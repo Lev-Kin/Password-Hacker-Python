@@ -1,0 +1,15 @@
+type: code
+files:
+- name: main.py
+  visible: true
+  text: |-
+    a = int(input())
+    b = int(input())
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/11687#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 20 Aug 2023 06:37:31 UTC"
+record: -1
+submission_language: python3

@@ -8,3 +8,6 @@ content:
 - Socket module
 - Dictionary methods
 - How to read the documentation
+- Exception handling
+- Map and filter
+- Itertools module
