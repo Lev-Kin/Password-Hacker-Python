@@ -4,7 +4,7 @@ hyperskill_project:
   is_template_based: false
   use_ide: true
   environment: unittest
-update_date: "Tue, 22 Aug 2023 06:50:14 UTC"
+update_date: "Thu, 31 Aug 2023 05:45:17 UTC"
 stages:
 - id: 442
   step: 7216
@@ -14,7 +14,7 @@ stages:
   is_completed: true
 - id: 444
   step: 7218
-  is_completed: false
+  is_completed: true
 - id: 445
   step: 7219
   is_completed: false
@@ -23,32 +23,18 @@ stages:
   is_completed: false
 topics:
   0:
-  - title: Binary numbers
-    theory_id: 5544
-  - title: Hexadecimal numbers
-    theory_id: 8788
-  - title: Units of information
-    theory_id: 6865
-  - title: IDE
-    theory_id: 10996
   - title: Introduction to Operating systems
     theory_id: 9704
   - title: Command line overview
     theory_id: 8977
   - title: Parameters and Options
     theory_id: 9746
-  - title: World Wide Web
-    theory_id: 6633
-  - title: HyperText Transfer Protocol
-    theory_id: 6569
-  - title: HTTP URL
-    theory_id: 6740
+  - title: IDE
+    theory_id: 10996
   - title: Files
     theory_id: 13025
   - title: File types
     theory_id: 13017
-  - title: Domains
-    theory_id: 6911
   - title: Working with file modes and permissions
     theory_id: 13961
   - title: Introduction to Python
@@ -71,20 +57,18 @@ topics:
     theory_id: 5913
   - title: Naming variables
     theory_id: 5885
+  - title: Pip
+    theory_id: 6230
+  - title: Virtual Environment
+    theory_id: 13923
   - title: Program with numbers
     theory_id: 5872
   - title: If statement
     theory_id: 5953
   - title: Else statement
     theory_id: 5932
-  - title: Pip
-    theory_id: 6230
-  - title: Virtual Environment
-    theory_id: 13923
   - title: For loop
     theory_id: 6065
-  - title: Unicode
-    theory_id: 7899
   - title: PyCharm basics
     theory_id: 6193
   - title: Elif statement
@@ -93,12 +77,6 @@ topics:
     theory_id: 19153
   - title: Debugging Python applications in PyCharm
     theory_id: 19163
-  - title: Command line arguments
-    theory_id: 7981
-  - title: How to read the documentation
-    theory_id: 12125
-  - title: Argparse module
-    theory_id: 11389
   - title: Introduction to Linux
     theory_id: 9526
   - title: File modes and permissions
@@ -113,6 +91,12 @@ topics:
     theory_id: 8702
   - title: Socket module
     theory_id: 8670
+  - title: Command line arguments
+    theory_id: 7981
+  - title: How to read the documentation
+    theory_id: 12125
+  - title: Argparse module
+    theory_id: 11389
   - title: Avoiding bad comments
     theory_id: 6440
   - title: Basic data types
@@ -171,14 +155,14 @@ topics:
     theory_id: 6037
   - title: Arguments
     theory_id: 7248
-  - title: Basic string methods
-    theory_id: 6842
-  - title: Operations with list
-    theory_id: 6031
   - title: Escape sequences
     theory_id: 7130
+  - title: Basic string methods
+    theory_id: 6842
   - title: Split and join
     theory_id: 6972
+  - title: Operations with list
+    theory_id: 6031
   - title: Dictionary
     theory_id: 6481
   - title: Dictionary methods
@@ -190,10 +174,6 @@ topics:
   3:
   - title: Immutability
     theory_id: 7929
-  - title: Computer programming
-    theory_id: 8739
-  - title: Paradigms
-    theory_id: 15860
   - title: Introduction to OOP
     theory_id: 3614
   - title: Program execution
