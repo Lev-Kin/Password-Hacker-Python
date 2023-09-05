@@ -1216,6 +1216,12 @@ files:
     biao
     xuan
   learner_created: true
+- name: hacking/logins.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/learn/step/7219#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Tue, 05 Sep 2023 06:33:07 UTC"
 record: -1

