@@ -22,3 +22,6 @@ content:
 - Json module
 - Indexes
 - Taking input
+- Profiling in Python
+- Custom generators
+- Invoking a function
